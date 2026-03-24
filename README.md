@@ -1,0 +1,2 @@
+# odor_space_sampling
+This is a repository that explores a variety of sampling methods to generate lists of odorants that span odor space. The repository explores a combination of 3 datasets: goodscents, leffingwell, and a human dataset.
