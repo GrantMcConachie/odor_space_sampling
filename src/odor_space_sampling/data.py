@@ -27,21 +27,23 @@ def load_csv(filepath, sep=','):
     return df
 
 
-def convert_df_to_rdkit_desc_mat(df):
+def make_rdkit_descriptors(filepath, sep=','):
     """
     Converts loaded dataframe into rdkit descriptors
 
     Args:
-        df (pandas.dataframe): dataframe of the smiles data
+        filepath (str): path to csv
+        sep (str): delimiter used for the data (default comma)
     
     Returns:
         data_matrix (np.ndarray): (num smiles, descriptor) matrix
     """
+    df = load_csv(filepath=filepath, sep=sep)
     smiles_list = list(df['smiles'])
 
     # embed odors into rdkit descriptor vectors
     data_matrix = []
-    for smi in smiles_list:
+    for smi in tqdm(smiles_list, desc="generating descriptors"):
         mol = Chem.MolFromSmiles(smi)
         descriptor_dict = Descriptors.CalcMolDescriptors(mol)
         desc_vector = list(descriptor_dict.values())
@@ -125,9 +127,3 @@ def add_cid_to_data(filepath, sep=',', save=False):
         df.to_csv(filepath, index=False)
 
     return df
-
-
-def reduce_data(x):
-    """
-    
-    """

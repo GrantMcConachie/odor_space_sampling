@@ -1,0 +1,11 @@
+smiles,label
+Cc1ccnc2ccccc12,['gslf']
+CC(C)c1ccnc2ccccc12,['gslf']
+Cc1cnc2ccccc2n1,['gslf']
+Cc1nc2ccccc2nc1C,['gslf']
+Cc1cccc2nccnc12,['gslf']
+Cc1nc2ccccc2c(C)c1C,['human']
+CC(C)Cc1ccnc2ccccc12,['gslf']
+CC(C)(C)c1cccc2ncccc12,['gslf']
+Cc1ccc2ccccc2n1,['gslf']
+Cc1cccc2ccccc12,['gslf']
