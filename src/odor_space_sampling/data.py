@@ -10,6 +10,8 @@ from tqdm import tqdm
 from rdkit import Chem
 from rdkit.Chem import Descriptors
 
+from .utils import OdorData, remove_nans, reduce_data
+
 
 def load_csv(filepath, sep=','):
     """
@@ -52,6 +54,25 @@ def make_rdkit_descriptors(filepath, sep=','):
     data_matrix = np.array(data_matrix)
 
     return data_matrix
+
+
+def load_and_prepare(filepath, sep=',') -> OdorData:
+    """
+    Loads a csv and builds the fully processed OdorData object (rdkit
+    descriptors -> nan removal -> PCA reduction).
+
+    Args:
+        filepath (str): path to csv with a 'smiles' column
+        sep (str): delimiter (default comma)
+
+    Returns:
+        OdorData with df and row-aligned reduced data matrix x
+    """
+    df = load_csv(filepath, sep=sep)
+    x = make_rdkit_descriptors(filepath, sep=sep)
+    x = remove_nans(x)
+    x = reduce_data(x)
+    return OdorData(df=df, x=x)
 
 
 def remove_nans(mat):

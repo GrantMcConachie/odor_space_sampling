@@ -3,10 +3,13 @@ functions for sampling odor space
 """
 
 import numpy as np
+import pandas as pd
 from scipy.stats import qmc
 from sklearn.cluster import KMeans
 from sklearn.mixture import GaussianMixture
-from sklearn.metrics import pairwise_distances_argmin_min
+from sklearn.metrics import pairwise_distances_argmin_min, pairwise_distances
+
+from .utils import OdorData
 
 
 def uniform_sample(x, n_samples, seed):
@@ -170,3 +173,53 @@ def sample_with_all_methods(x, n_samples, seed=12345, n_gaussians=100):
             "distances": distances_gmm
         }
     }
+
+
+def get_n_closest_points_gmm(
+        data: OdorData,
+        n_samples,
+        seed=12345,
+        n_clusters=100,
+        n_closest_points=5,
+        save_path=None
+):
+    """
+    Fits a gmm and calculates the n closest points to each sampled point
+
+    Args:
+        data (OdorData): bundled dataframe and data matrix
+        n_samples (int): number of points to sample from the GMM
+        seed (int): random seed
+        n_clusters (int): number of gaussian components in the GMM
+        n_closest_points (int): number of nearest real odors to return per sample
+        save_path (str): if provided, saves the output df to this path
+
+    Returns:
+        (pd.DataFrame) with columns: sample, smiles, label, cid, IUPAC
+    """
+    gmm = GaussianMixture(
+        n_components=n_clusters, covariance_type='full', random_state=seed
+    )
+    gmm.fit(data.x)
+    samples_gmm, _ = gmm.sample(n_samples)
+    pair_dist = pairwise_distances(samples_gmm, data.x)
+    closest_points = np.argsort(pair_dist, axis=1)
+
+    rows = []
+    for i, locs in enumerate(closest_points):
+        for j in range(n_closest_points):
+            row = data.df.iloc[locs[j]]
+            rows.append({
+                'sample': i,
+                'smiles': row['smiles'],
+                'label': row['label'],
+                'cid': row['cid'],
+                'IUPAC': row['IUPAC'],
+            })
+
+    result_df = pd.DataFrame(rows)
+
+    if save_path is not None:
+        result_df.to_csv(save_path, index=False)
+
+    return result_df

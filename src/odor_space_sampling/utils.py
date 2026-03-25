@@ -3,12 +3,27 @@ utility functions for processing the data
 """
 
 import numpy as np
+import pandas as pd
+from dataclasses import dataclass
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
 from rdkit import Chem
 from rdkit.Chem import Descriptors
 from rdkit.ML.Descriptors import MoleculeDescriptors
+
+
+@dataclass
+class OdorData:
+    """
+    Bundles the raw dataframe and its row-aligned data matrix together.
+
+    Attributes:
+        df (pd.DataFrame): original dataframe (smiles, label, cid, IUPAC, ...)
+        x (np.ndarray): processed data matrix, row i corresponds to df.iloc[i]
+    """
+    df: pd.DataFrame
+    x: np.ndarray
 
 
 def remove_zero_var_descriptors(x):
