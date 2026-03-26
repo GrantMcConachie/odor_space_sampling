@@ -9,7 +9,7 @@ from sklearn.cluster import KMeans
 from sklearn.mixture import GaussianMixture
 from sklearn.metrics import pairwise_distances_argmin_min, pairwise_distances
 
-from .utils import OdorData
+from .data import OdorData
 
 
 def uniform_sample(x, n_samples, seed):

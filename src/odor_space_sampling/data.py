@@ -7,10 +7,25 @@ import requests
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
+from dataclasses import dataclass
+
 from rdkit import Chem
 from rdkit.Chem import Descriptors
 
-from .utils import OdorData, remove_nans, reduce_data
+from .utils import remove_nans, reduce_data
+
+
+@dataclass
+class OdorData:
+    """
+    Bundles the raw dataframe and its row-aligned data matrix together.
+
+    Attributes:
+        df (pd.DataFrame): original dataframe (smiles, label, cid, IUPAC, ...)
+        x (np.ndarray): processed data matrix, row i corresponds to df.iloc[i]
+    """
+    df: pd.DataFrame
+    x: np.ndarray
 
 
 def load_csv(filepath, sep=','):
@@ -73,21 +88,6 @@ def load_and_prepare(filepath, sep=',') -> OdorData:
     x = remove_nans(x)
     x = reduce_data(x)
     return OdorData(df=df, x=x)
-
-
-def remove_nans(mat):
-    """
-    removes nan values from the data matrix
-
-    Args:
-        mat (np.ndarray): (num smiles, desctitor) matrix
-    
-    Returns:
-        cleaned_mat (np.ndarray): cleaned, no nan matrix
-    """
-    nan_cols = np.unique(np.where(np.isnan(mat))[1])
-    cleaned_mat = np.delete(mat, nan_cols, axis=1)
-    return cleaned_mat
 
 
 def add_cid_to_data(filepath, sep=',', save=False):

@@ -8,7 +8,8 @@ from scipy.stats import ks_2samp
 from sklearn.mixture import GaussianMixture
 from sklearn.metrics import pairwise_distances_argmin_min
 
-from .utils import OdorData, get_rd_labels_full
+from .data import OdorData
+from .utils import get_rd_labels_full
 from .plotting import plot_gmm_sweep
 
 

@@ -3,8 +3,6 @@ utility functions for processing the data
 """
 
 import numpy as np
-import pandas as pd
-from dataclasses import dataclass
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
@@ -13,17 +11,19 @@ from rdkit.Chem import Descriptors
 from rdkit.ML.Descriptors import MoleculeDescriptors
 
 
-@dataclass
-class OdorData:
+def remove_nans(mat):
     """
-    Bundles the raw dataframe and its row-aligned data matrix together.
+    removes nan values from the data matrix
 
-    Attributes:
-        df (pd.DataFrame): original dataframe (smiles, label, cid, IUPAC, ...)
-        x (np.ndarray): processed data matrix, row i corresponds to df.iloc[i]
+    Args:
+        mat (np.ndarray): (num smiles, desctitor) matrix
+    
+    Returns:
+        cleaned_mat (np.ndarray): cleaned, no nan matrix
     """
-    df: pd.DataFrame
-    x: np.ndarray
+    nan_cols = np.unique(np.where(np.isnan(mat))[1])
+    cleaned_mat = np.delete(mat, nan_cols, axis=1)
+    return cleaned_mat
 
 
 def remove_zero_var_descriptors(x):
