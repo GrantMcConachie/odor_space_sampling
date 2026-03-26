@@ -1,0 +1,101 @@
+smiles,label,cid,IUPAC
+CC1CCC2CC1C2(C)C,['gslf'],10129,"2,6,6-trimethylnorpinane"
+CC(C)C(=O)OC1CCC2CCCCC2C1,['gslf'],106937,decalin-2-yl 2-methylpropanoate
+CC(=CC=O)CCC=C(C)CC(C)C,['gslf'],94132,"3,7,9-trimethyldeca-2,6-dienal"
+CCCCCCCCCC=CC=O,['gslf'],20967,dodec-2-enal
+CCCCCCC(C=O)CC,['gslf'],3301251,2-ethyloctanal
+CC=C(C=O)CCCC,['gslf'],53424302,2-ethylidenehexanal
+Cc1cnccn1,"['human', 'gslf']",7976,2-methylpyrazine
+CCCCc1nccnc1C,['gslf'],85228,2-butyl-3-methyl-pyrazine
+CCC=CCCOC(=O)CCCCCCC,['gslf'],43658,hex-3-enyl octanoate
+CCCCCCCCOC(=O)CC(C)C,['gslf'],228769,octyl 3-methylbutanoate
+CCCCCCCCCC(=O)OC(C)C,['gslf'],16833,isopropyl decanoate
+CCCCOC(=O)CCC,['gslf'],7983,butyl butanoate
+CC(C)(C)C(=O)OCc1ccccc1,['gslf'],74977,"benzyl 2,2-dimethylpropanoate"
+CCCCCCC(=O)Oc1ccc(C)cc1,['gslf'],572534,p-tolyl heptanoate
+CCCCCCCC(=O)Oc1ccc(C)cc1,['gslf'],43046,p-tolyl octanoate
+COC(=O)c1ccc(C)cc1,['gslf'],7455,methyl 4-methylbenzoate
+CC=CC(=O)OCCc1ccccc1,['gslf'],95381,2-phenylethyl but-2-enoate
+COC(=O)c1ccc(O)c(C)c1O,['gslf'],118521,"methyl 2,4-dihydroxy-3-methyl-benzoate"
+CCCC(=O)OCCC(C)CCC=C(C)C,['gslf'],8835,"3,7-dimethyloct-6-enyl butanoate"
+CC(=O)OCC=C(C)CCC=C(C)CCC=C(C)C,['gslf'],94403,"3,7,11-trimethyldodeca-2,6,10-trienyl acetate"
+CCC=S,['gslf'],138345,propanethial
+S=C=NCCc1ccccc1,['gslf'],16741,2-isothiocyanatoethylbenzene
+Cc1ccc(C=O)s1,['gslf'],61663,5-methylthiophene-2-carbaldehyde
+CCCCCC1=C(C)CCC1=O,['gslf'],62378,3-methyl-2-pentyl-cyclopent-2-en-1-one
+CCC=CCCC(C)=O,['gslf'],87927,oct-5-en-2-one
+OCc1ccccc1,"['human', 'gslf']",244,phenylmethanol
+CCOCc1ccccc1,['gslf'],10873,ethoxymethylbenzene
+CCCCCC=CCCC(=O)OC,['gslf'],23833,methyl dec-4-enoate
+CC=C(C)C(=O)OCCC(C)C,['gslf'],82661,isopentyl 2-methylbut-2-enoate
+CCC(=O)OC1CCCCCCCCCCC1,['gslf'],525963,cyclododecyl propanoate
+CCCC(CC(=O)OCC)OC(C)=O,['gslf'],89464,ethyl 3-acetoxyhexanoate
+CC(C)CCC(=O)OC(C)C,['gslf'],527990,isopropyl 4-methylpentanoate
+CCC(=O)OCCC(C)C,['gslf'],7772,isopentyl propanoate
+CCOC(C)=O,"['human', 'gslf']",8857,ethyl acetate
+CCCC(=O)OC(C)CCC,['gslf'],43263,1-methylbutyl butanoate
+CCC(C)SSC(C)CC,['gslf'],94314,2-(sec-butyldisulfanyl)butane
+CC(=O)C=CC12OC1(C)CCCC2(C)C,['gslf'],90899,"4-(2,2,6-trimethyl-7-oxabicyclo[4.1.0]heptan-1-yl)but-3-en-2-one"
+CCCCCCCCOCc1ccccc1,['gslf'],347508,octoxymethylbenzene
+CCCCCCCCCC1OCC(C)O1,['gslf'],95397,"4-methyl-2-nonyl-1,3-dioxolane"
+CCOC(C)OCC(C)CC,['gslf'],53427914,1-(1-ethoxyethoxy)-2-methyl-butane
+CCCCCC(OCCC(C)C)OCCC(C)C,['gslf'],208862,"1,1-diisopentyloxyhexane"
+C=Cc1sc(C)nc1C,['gslf'],5362563,"2,4-dimethyl-5-vinyl-thiazole"
+CCCCCc1csc(C)n1,['gslf'],89610154,2-methyl-4-pentyl-thiazole
+CC(=O)C(C)C(C)=O,['gslf'],69949,"3-methylpentane-2,4-dione"
+CCCC(=O)OC1=C(C)OC(C)C1=O,['gslf'],19872333,"(2,5-dimethyl-4-oxo-3-furyl) butanoate"
+CC(=O)OCCC(C)S,['gslf'],6430878,3-sulfanylbutyl acetate
+CCCCCCCCC(S)C=O,['gslf'],176371293,2-sulfanyldecanal
+CCCCC(CC)CS,['gslf'],110968,2-ethylhexane-1-thiol
+CCCC(C)(C)S,['gslf'],74213,2-methylpentane-2-thiol
+O=C(O)C1CC(O)CN1,['gslf'],825,4-hydroxypyrrolidine-2-carboxylic acid
+CCCCC(C)Cl,['human'],12521,2-chlorohexane
+ClC(Cl)Cl,['human'],6212,chloroform
+CC(C)C(C)C(C)(C)O,['gslf'],18280,"2,3,4-trimethylpentan-2-ol"
+C=C(C)CCCC(C)CO,['gslf'],169818,"2,6-dimethylhept-6-en-1-ol"
+CCCCCC(C)(O)CC,['human'],21432,3-methyloctan-3-ol
+CCCC=CC=CCCCO,['gslf'],30747,"deca-4,6-dien-1-ol"
+CC(CCO)CCCC(C)(C)O,['gslf'],249494,"3,7-dimethyloctane-1,7-diol"
+CC1(O)CCCC1,['human'],73830,1-methylcyclopentanol
+C=Cc1ccc2ccccc2c1,['human'],13230,2-vinylnaphthalene
+NC(=O)N=NC(N)=O,['gslf'],31269,carbamoyliminourea
+CCC=CCCCC(=O)O,['gslf'],53436338,oct-5-enoic acid
+CSSCc1ccc(C)o1,['gslf'],45108274,2-methyl-5-[(methyldisulfanyl)methyl]furan
+CC(=O)Sc1ccoc1C,['gslf'],108765,S-(2-methyl-3-furyl) ethanethioate
+CCCC(C)C(=O)O,['gslf'],7341,2-methylpentanoic acid
+CCC(C)CC(=O)O,"['human', 'gslf']",7755,3-methylpentanoic acid
+CC(C)=CC(=O)O,['gslf'],10931,3-methylbut-2-enoic acid
+CCC(C)C(=O)O,['gslf'],8314,2-methylbutanoic acid
+CCC=CCC(=O)O,['gslf'],20200,hex-3-enoic acid
+CC(C)C1=CCC(C(=O)O)CC1,['gslf'],62117,4-isopropylcyclohex-3-ene-1-carboxylic acid
+CCCCCCCC(O)CC(=O)O,['human'],26612,3-hydroxydecanoic acid
+CC(C)=CCCC(C)CC(C)O,['gslf'],162418,"4,8-dimethylnon-7-en-2-ol"
+CC(=CCC1CC=C(C)C1(C)C)CO,['gslf'],119897,"2-methyl-4-(2,2,3-trimethylcyclopent-3-en-1-yl)but-2-en-1-ol"
+CC1=CC=C2C(C)(C)CCCC2(C)O1,['gslf'],110664,"2,5,5,8a-tetramethyl-7,8-dihydro-6H-chromene"
+COC(=O)c1ccccc1N=CC(C)Cc1ccc(OC)cc1,['gslf'],3034267,methyl 2-[[3-(4-methoxyphenyl)-2-methyl-propylidene]amino]benzoate
+CCCCCCCCCCCCCC(=O)OCCC(C)C,['gslf'],95950,isopentyl tetradecanoate
+CCCCCCCCCCCCOC(=O)CC,['gslf'],80354,dodecyl propanoate
+CCCCCCCCCCOC(=O)CCC(C)C,['gslf'],58105461,decyl 4-methylpentanoate
+CCCCCCCCCC(=O)OCCC(C)C,['gslf'],75320,isopentyl decanoate
+CCCCCCCCCC(C)C,['human'],23459,2-methylundecane
+C=CCC(C)CCCCCC,['human'],518719,4-methyldec-1-ene
+CCCCCCCO,"['human', 'gslf']",8129,heptan-1-ol
+CCCCCCC(C)CO,['gslf'],102495,2-methyloctan-1-ol
+CCCCCC=CCCCCCC,['human'],138758,tridec-6-ene
+C=C(C)CCCCC,['human'],27519,2-methylhept-1-ene
+C=C1C=CC(C(C)C)CC1,"['human', 'gslf']",11142,3-isopropyl-6-methylene-cyclohexene
+CC=C(C)CC,['human'],12014,3-methylpent-2-ene
+CC1CCCCC1(C)C,['human'],35363,"1,1,2-trimethylcyclohexane"
+CCCCCCCCCC(C)O,['gslf'],15448,undecan-2-ol
+COC(C)OC,['gslf'],10795,"1,1-dimethoxyethane"
+CCCOC(=O)c1ccccc1,['gslf'],16846,propyl benzoate
+COCCOc1ccc(C)cc1,['gslf'],3086443,1-(2-methoxyethoxy)-4-methyl-benzene
+C=CCOC(=O)COc1ccccc1,['gslf'],24117,allyl 2-phenoxyacetate
+CCCCC(=O)Oc1ccccc1,['gslf'],29950,phenyl pentanoate
+C=CCc1ccc2c(c1)OCO2,['gslf'],5144,"5-allyl-1,3-benzodioxole"
+CC(=O)OCCOc1ccccc1,['gslf'],22568,2-phenoxyethyl acetate
+CCC(=O)OC1(C)CCCCC1(C)C,['gslf'],unknown,unknown
+CCC(C)C(=O)OC1CC(C)CCC1C(C)C,['gslf'],27868,(2-isopropyl-5-methyl-cyclohexyl) 2-methylbutanoate
+CCC(=O)OCC(=O)OC(C)C1CCCC(C)(C)C1,['gslf'],21933618,"[2-[1-(3,3-dimethylcyclohexyl)ethoxy]-2-oxo-ethyl] propanoate"
+COC(=O)c1ccc(O)cc1,['gslf'],7456,methyl 4-hydroxybenzoate
+CSSCC(C)=O,['gslf'],22952976,1-(methyldisulfanyl)propan-2-one

@@ -4,6 +4,7 @@ functions for sampling odor space
 
 import numpy as np
 import pandas as pd
+from tqdm import tqdm
 from scipy.stats import qmc
 from sklearn.cluster import KMeans
 from sklearn.mixture import GaussianMixture
@@ -120,12 +121,12 @@ def gmm_sample(x, n_samples, seed, n_gaussians=100):
     return samples, indices, distances
 
 
-def sample_with_all_methods(x, n_samples, seed=12345, n_gaussians=100):
+def sample_with_all_methods(data, n_samples, seed=12345, n_gaussians=100):
     """
     samples data with every sampling method
 
     Args:
-        x (np.ndarray): data matrix
+        x (OdorData): bundled dataframe and data matrix
         seed (int): random seed for sampling
         n_samples (int): number of points to sample
         n_gaussians (int): number of gaussian distributions to use for the GMM
@@ -134,6 +135,7 @@ def sample_with_all_methods(x, n_samples, seed=12345, n_gaussians=100):
         (dict) samples, indicies of original array, and distances from the
         sampled point (if applicable) for each of the sampling methods
     """
+    x = data.x
     samples_uniform, indices_uniform, distances_uniform = uniform_sample(x, n_samples, seed)
     samples_LHS, indices_LHS, distances_LHS = LHS_sampling(x, n_samples, seed)
     samples_gaussian, indices_gaussian, distances_gaussian = gaussian_sample(x, n_samples, seed)
@@ -177,10 +179,10 @@ def sample_with_all_methods(x, n_samples, seed=12345, n_gaussians=100):
 
 def get_n_closest_points_gmm(
         data: OdorData,
-        n_samples,
+        n_closest_points,
         seed=12345,
         n_clusters=100,
-        n_closest_points=5,
+        n_samples=100,
         save_path=None
 ):
     """
@@ -223,3 +225,40 @@ def get_n_closest_points_gmm(
         result_df.to_csv(save_path, index=False)
 
     return result_df
+
+
+def gmm_resample_varying_seeds(
+        data: OdorData,
+        seeds,
+        n_clusters=100,
+        n_samples=100,
+        save_path=None
+):
+    """
+    Function that creates multiple GMMs given a set of random seeds and samples
+    odors with each seed.
+
+    Args:
+        data (OdorData): bundled dataframe and data matrix
+        seeds (list[int]): seeds to initialize the gmm
+        n_samples (int): number of points to sample from the GMM
+        n_clusters (int): number of gaussian components in the GMM
+        save_path (str): if provided, saves the output df to this path
+    """
+    dfs = []
+    if '.csv' in save_path:
+        save_path = save_path.replace('.csv', '')
+
+    for seed in tqdm(seeds, desc="iterating through seeds"):
+        gmm = GaussianMixture(n_components=n_clusters, covariance_type='full', random_state=seed)
+        gmm.fit(data.x)
+
+        # Sample from the GMM in PCA space
+        samples_gmm, _ = gmm.sample(n_samples)
+        indices_gmm, _ = pairwise_distances_argmin_min(samples_gmm, data.x)
+        
+        df_to_save = data.df.iloc[indices_gmm]
+        dfs.append(df_to_save)
+
+        if save_path is not None:
+            df_to_save.to_csv(f'{save_path}_{seed}.csv', index=False)
