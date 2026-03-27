@@ -48,38 +48,64 @@ def plot_feature_covariance(x):
     plt.title('covariance of all features in odor space')
 
 
-def plot_sampling_projections(x, sample_methods):
+def plot_sampling_projections(x, sample_methods, label="Samples", umap_seed=42):
     """
     Plots each set of sampled indices in PCA and UMAP 2D space.
 
     Args:
         x (np.ndarray): full data matrix (n_samples, n_features)
-        sample_methods (list[tuple]): list of (indices, label) pairs
+        sample_methods: one of:
+            - a (samples, indices, distances) tuple from a single sampling function
+            - a plain indices array
+            - a list of (result_or_indices, label) pairs, where each result_or_indices
+              is either a (samples, indices, distances) tuple or a plain indices array
+        label (str): label to use when a single result or indices array is passed
+            directly (default "Samples")
+        umap_seed (int): random seed for UMAP (default 42)
 
     Returns:
         None (displays plots)
+
+    Examples:
+        # single sampling function result
+        result = sampling.gaussian_sample(data.x, n_samples=20, seed=42)
+        plot_sampling_projections(data.x, result, label="Gaussian")
+
+        # plain indices
+        plot_sampling_projections(data.x, my_indices, label="TORI")
+
+        # multiple methods
+        plot_sampling_projections(data.x, [(result, "Gaussian"), (my_indices, "TORI")])
     """
+    # normalize single inputs into list format
+    if isinstance(sample_methods, np.ndarray):
+        sample_methods = [(sample_methods, label)]
+    elif isinstance(sample_methods, tuple) and len(sample_methods) == 3:
+        sample_methods = [(sample_methods, label)]
+
     pca_vis = PCA(n_components=2)
     x_pca2 = pca_vis.fit_transform(x)
 
-    reducer = umap.UMAP(n_components=2)
+    reducer = umap.UMAP(n_components=2, random_state=umap_seed)
     embedding = reducer.fit_transform(x)
 
-    for indices, label in sample_methods:
+    for item, lbl in sample_methods:
+        indices = item[1] if isinstance(item, tuple) else item
+
         fig, axes = plt.subplots(1, 2, figsize=(10, 4))
 
         axes[0].scatter(x_pca2[:, 0], x_pca2[:, 1], c='grey', s=1, alpha=0.2, label='All Data')
-        axes[0].scatter(x_pca2[indices, 0], x_pca2[indices, 1], c='red', s=10, label=f'{label} Samples')
+        axes[0].scatter(x_pca2[indices, 0], x_pca2[indices, 1], c='red', s=10, label=f'{lbl} Samples')
         axes[0].set_xlabel('PC1')
         axes[0].set_ylabel('PC2')
-        axes[0].set_title(f'{label} Sampling (PCA space)')
+        axes[0].set_title(f'{lbl} Sampling (PCA space)')
         axes[0].legend()
 
         axes[1].scatter(embedding[:, 0], embedding[:, 1], c='grey', s=1, alpha=0.2, label='All Data')
-        axes[1].scatter(embedding[indices, 0], embedding[indices, 1], c='red', s=10, label=f'{label} Samples')
+        axes[1].scatter(embedding[indices, 0], embedding[indices, 1], c='red', s=10, label=f'{lbl} Samples')
         axes[1].set_xlabel('UMAP1')
         axes[1].set_ylabel('UMAP2')
-        axes[1].set_title(f'{label} Sampling (UMAP space)')
+        axes[1].set_title(f'{lbl} Sampling (UMAP space)')
         axes[1].legend()
 
         plt.tight_layout()
@@ -95,14 +121,16 @@ def plot_all_sampling_methods(x, results, extra_methods=None):
     Args:
         x (np.ndarray): full data matrix (n_samples, n_features)
         results (dict): output from sample_with_all_methods — keys are method
-            names, values are dicts with an "indices" key
-        extra_methods (list[tuple], optional): additional (indices, label) pairs,
-            e.g. [(tori_df_1_idx, "TORI_table1"), (tori_df_2_idx, "TORI_table2")]
+            names, values are dicts with "samples", "indices", and "distances" keys
+        extra_methods (list[tuple], optional): additional ((samples, indices, distances), label)
+            pairs, e.g. from individual sampling functions or external index sets
 
     Returns:
         None (displays plots)
     """
-    sample_methods = [(v["indices"], k) for k, v in results.items()]
+    sample_methods = [
+        ((v["samples"], v["indices"], v["distances"]), k) for k, v in results.items()
+    ]
     if extra_methods:
         sample_methods.extend(extra_methods)
     plot_sampling_projections(x, sample_methods)
