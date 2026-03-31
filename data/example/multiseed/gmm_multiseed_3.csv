@@ -1,0 +1,101 @@
+smiles,label,cid,IUPAC
+CCCCCCOC(C)=O,['gslf'],8908,hexyl acetate
+CCCCCC(=O)OCCC(C)C,['gslf'],16617,isopentyl hexanoate
+CCCCCCC(=O)OCCCC,['gslf'],21596,butyl heptanoate
+CC(=O)OCCCCCCC(C)C,['gslf'],162413,7-methyloctyl acetate
+C=CCOC(=O)C(CC)CC,['gslf'],61408,allyl 2-ethylbutanoate
+CCCCCCCOC(=O)CC(C)C,['gslf'],91850,heptyl 3-methylbutanoate
+CCCCCCC=COC(=O)CC,['gslf'],54034681,oct-1-enyl propanoate
+CCCCCCCC=COC(=O)CCC,['gslf'],161504856,non-1-enyl butanoate
+CC(=O)OC(C)CCCC(C)C,['gslf'],50006,"1,5-dimethylhexyl acetate"
+C=C(C)CCC(C)C,['human'],33451,"2,5-dimethylhex-1-ene"
+C=CC(C)CCCC,['human'],20946,3-methylhept-1-ene
+CC1(C)CC=CC1,['human'],87906,"4,4-dimethylcyclopentene"
+CC1=C(C)C(C)CC1,['human'],136316,"1,2,3-trimethylcyclopentene"
+CC=O,"['human', 'gslf']",177,acetaldehyde
+CCCCC(C)C=O,['gslf'],102515,2-methylhexanal
+CC1CCCS1,['gslf'],15711,2-methyltetrahydrothiophene
+CC(O)C(=O)[O-].[Na+],['gslf'],23666456,sodium 2-hydroxypropanoate
+CC(=O)c1ccc(C)[nH]1,['gslf'],13220327,1-(5-methyl-1H-pyrrol-2-yl)ethanone
+COC(=O)CO,['gslf'],66774,methyl 2-hydroxyacetate
+CCC(C)OC(=O)C(C)O,['gslf'],86741,sec-butyl 2-hydroxypropanoate
+CCC(=O)OCCc1scnc1C,['gslf'],29933357,2-(4-methylthiazol-5-yl)ethyl propanoate
+CC(C)CCCCCCC(=O)O,['gslf'],111470,8-methylnonanoic acid
+CCCCC(CC)C(=O)O,"['human', 'gslf']",8697,2-ethylhexanoic acid
+CCCC=C(C)C(=O)O,['gslf'],120086,2-methylhex-2-enoic acid
+CC(C)CCCC(C)CC#N,['gslf'],unknown,unknown
+CC=CC(=O)C(C)CC,['gslf'],517791,5-methylhept-2-en-4-one
+CC(C)C(=O)OCC=Cc1ccccc1,['gslf'],7663,cinnamyl 2-methylpropanoate
+Cc1ccc(OC(=O)c2ccccc2)cc1,['gslf'],11962,p-tolyl benzoate
+CC(=O)OCC=Cc1ccccc1,"['human', 'gslf']",7660,cinnamyl acetate
+CCCCCCCCCC=Nc1ccccc1C(=O)OC,['gslf'],105896,methyl 2-(decylideneamino)benzoate
+CCCCCCCCCCCCCCO,"['human', 'gslf']",8209,tetradecan-1-ol
+CCCCCCCCCCCCCCC(C)O,['human'],85779,hexadecan-2-ol
+CCCCCCC(CCCC)c1ccccc1,['human'],20661,1-butylheptylbenzene
+CCCCCCCCCCCCCCCCCC=O,['gslf'],12533,octadecanal
+C=C1CCC2C13CCC(C)C(C3)C2(C)C,['gslf'],74344324,"6,6,8-trimethyl-2-methylene-tricyclo[5.3.1.01,5]undecane"
+CCCCCCCCC(C)C=O,['gslf'],29381,2-methyldecanal
+CCCCCC=CCC=CC=CC=O,['gslf'],61647,"trideca-2,4,7-trienal"
+CC(=O)OC1C=C(C)CCC1C(C)C,['gslf'],102578,(6-isopropyl-3-methyl-cyclohex-2-en-1-yl) acetate
+CC(=O)OCC1CCC(C)CC1C,['gslf'],106746,"(2,4-dimethylcyclohexyl)methyl acetate"
+CCC(O)CCC(C)C,['gslf'],86783,6-methylheptan-3-ol
+CCCCC=CCO,['gslf'],36504,hept-2-en-1-ol
+C=CCO,"['human', 'gslf']",7858,prop-2-en-1-ol
+CCCCc1cnco1,['gslf'],18000835,5-butyloxazole
+CCC1OCC2(CC=CCC2)CO1,['gslf'],116562,"3-ethyl-2,4-dioxaspiro[5.5]undec-9-ene"
+CCCCCCCCC1OCC(C)O1,['gslf'],95572,"4-methyl-2-octyl-1,3-dioxolane"
+CC(=O)OCC1CCC2CC1C2(C)C,['gslf'],119852,"(6,6-dimethylnorpinan-2-yl)methyl acetate"
+CC1=CC(=O)C2CC1C2(C)C,['gslf'],29025,"4,6,6-trimethylbicyclo[3.1.1]hept-3-en-2-one"
+CC(=O)OCC(COC(C)=O)OC(C)=O,"['human', 'gslf']",5541,"2,3-diacetoxypropyl acetate"
+CC=Cc1cc(C(C)C)ccc1C,['gslf'],84398,4-isopropyl-1-methyl-2-prop-1-enyl-benzene
+C=Cc1cccc(CC)c1,['human'],24143,1-ethyl-3-vinyl-benzene
+C=Cc1ccccc1C,['human'],11904,1-methyl-2-vinyl-benzene
+CC=CCCC1CCCC(=O)O1,['gslf'],122954,6-pent-3-enyltetrahydropyran-2-one
+O=C1CCCCCCCCCCC=CCCO1,['gslf'],78653,1-oxacyclohexadec-13-en-2-one
+CCCCC1(CC)CCC(=O)OC1,['gslf'],106787,5-butyl-5-ethyl-tetrahydropyran-2-one
+CC(C)(S)CCO,['gslf'],520682,3-methyl-3-sulfanyl-butan-1-ol
+CCCCCCC=CCCCCCCCC(=O)OCC=C(C)CCC=C(C)CCC=C(C)C,['gslf'],162800824,"3,7,11-trimethyldodeca-2,6,10-trienyl hexadec-9-enoate"
+CCCCCCC(CCOC(C)=O)OC(C)=O.CCCCCCC(O)CCO,['gslf'],16220103,"3-acetoxynonyl acetate;nonane-1,3-diol"
+N,['human'],222,ammonia
+CCCCCC=C1CCCC1=O,['gslf'],4574094,2-hexylidenecyclopentanone
+C=C(C)C1CCC2=CC(=O)CC(C)C2(C)C1,['gslf'],20797,"6-isopropenyl-4,4a-dimethyl-3,4,5,6,7,8-hexahydronaphthalen-2-one"
+CCCCCC1=CC(=O)CCC1,['gslf'],117483,3-pentylcyclohex-2-en-1-one
+CC(=O)C1CC=C(C)C1(C)C,['gslf'],20590,"1-(2,2,3-trimethylcyclopent-3-en-1-yl)ethanone"
+CCC(=O)CCC(C)C,"['human', 'gslf']",12210,6-methylheptan-3-one
+Oc1cccc(O)c1,['gslf'],5054,"benzene-1,3-diol"
+CCc1cccc(O)c1,['gslf'],12101,3-ethylphenol
+CC(C)c1ccc(O)cc1,['gslf'],7465,4-isopropylphenol
+OCCc1ccc(O)cc1,['gslf'],10393,4-(2-hydroxyethyl)phenol
+CCC(C)COC(C)OCCC(C)C,['gslf'],53427962,1-(1-isopentyloxyethoxy)-2-methyl-butane
+CCOC(CC(C)C)OCC,['gslf'],19695,"1,1-diethoxy-3-methyl-butane"
+CCOC(CC(C)C)OCC(C)C,['gslf'],3020407,1-ethoxy-1-isobutoxy-3-methyl-butane
+CC(C)CCOC(C)OCC(C)C,['gslf'],3018567,1-(1-isobutoxyethoxy)-3-methyl-butane
+CC(=CCC(C)C=O)C(C)C,['gslf'],163345,"2,5,6-trimethylhept-4-enal"
+CC=C(C)C(=O)OCC(C)C,['gslf'],109114,isobutyl 2-methylbut-2-enoate
+C=CC(CCCCC)OC(C)=O,['gslf'],17121,1-vinylhexyl acetate
+CC=CC(=O)OC(C)C,['gslf'],86651,isopropyl but-2-enoate
+CCCCC(=O)OCC,['gslf'],10882,ethyl pentanoate
+C=C(C)CCCC(C)CCOC(C)=O,['gslf'],8833,"3,7-dimethyloct-7-enyl acetate"
+CCC(CC)C(=O)OC,['gslf'],69951,methyl 2-ethylbutanoate
+C=C(C)C(CC=C(C)C)COC(C)=O,['gslf'],30247,(2-isopropenyl-5-methyl-hex-4-enyl) acetate
+CCOC(=O)C(=O)C(C)CC,['gslf'],13129857,ethyl 3-methyl-2-oxo-pentanoate
+CC(=O)OC1=C(C)OC(C)C1=O,['gslf'],61334,"(2,5-dimethyl-4-oxo-3-furyl) acetate"
+CC(=O)OC1=C(C)OC(C)C1=O,['gslf'],61334,"(2,5-dimethyl-4-oxo-3-furyl) acetate"
+CCc1ccc(C=O)s1,['gslf'],169830,5-ethylthiophene-2-carbaldehyde
+Cc1ncc2c(n1)C(C)OC2,['gslf'],21554596,"2,7-dimethyl-5,7-dihydrofuro[3,4-d]pyrimidine"
+CCOCc1cnccn1,['gslf'],103404,2-(ethoxymethyl)pyrazine
+CC=C1CC2CC1C1CCCOC21,['gslf'],163617,"9-ethylidene-3-oxatricyclo[6.2.1.02,7]undecane"
+OCC1CCC2C3CCC(C3)C12,['gslf'],121774,"3-tricyclo[5.2.1.02,6]decanylmethanol"
+CCOC(=O)C1OC1(C)c1ccccc1,['gslf'],6501,ethyl 3-methyl-3-phenyl-oxirane-2-carboxylate
+Cc1ccc(C(C)(C)O)cc1,['gslf'],14529,2-(p-tolyl)propan-2-ol
+CC1CCCC(C)C1C,['human'],15507,"1,2,3-trimethylcyclohexane"
+CCCC(C)C,['human'],7892,2-methylpentane
+CC#CC(C)(C)C,['human'],unknown,unknown
+CCC(CC)C(C)C,['human'],11863,3-ethyl-2-methyl-pentane
+CC(C)CCCC(C)C,['human'],14069,"2,6-dimethylheptane"
+Cc1ccc(C=CC=O)o1,['gslf'],53424335,3-(5-methyl-2-furyl)prop-2-enal
+CSc1ccc(C)o1,['gslf'],61657,2-methyl-5-methylsulfanyl-furan
+Cc1ccc2c(c1)CCCN2,['gslf'],66678,"6-methyl-1,2,3,4-tetrahydroquinoline"
+CC(=CCC1CC=C(C)C1(C)C)C(C)O,['gslf'],109411,"3-methyl-5-(2,2,3-trimethylcyclopent-3-en-1-yl)pent-3-en-2-ol"
+CC1=CCC(CCC(C)C(C)O)C1(C)C,['gslf'],103212,"3-methyl-5-(2,2,3-trimethylcyclopent-3-en-1-yl)pentan-2-ol"
+CC(C)C1CCC(CO)CC1,['gslf'],83763,(4-isopropylcyclohexyl)methanol

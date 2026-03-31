@@ -2,17 +2,13 @@
 Loading and converting data into proper format for sampling
 """
 
-import time
 import requests
 import numpy as np
 import pandas as pd
 from tqdm import tqdm
 from dataclasses import dataclass
 
-from rdkit import Chem
-from rdkit.Chem import Descriptors
-
-from .utils import remove_nans, reduce_data
+from .utils import reduce_data, make_rdkit_descriptors
 
 
 @dataclass
@@ -44,33 +40,6 @@ def load_csv(filepath, sep=','):
     return df
 
 
-def make_rdkit_descriptors(filepath, sep=','):
-    """
-    Converts loaded dataframe into rdkit descriptors
-
-    Args:
-        filepath (str): path to csv
-        sep (str): delimiter used for the data (default comma)
-    
-    Returns:
-        data_matrix (np.ndarray): (num smiles, descriptor) matrix
-    """
-    df = load_csv(filepath=filepath, sep=sep)
-    smiles_list = list(df['smiles'])
-
-    # embed odors into rdkit descriptor vectors
-    data_matrix = []
-    for smi in tqdm(smiles_list, desc="generating descriptors"):
-        mol = Chem.MolFromSmiles(smi)
-        descriptor_dict = Descriptors.CalcMolDescriptors(mol)
-        desc_vector = list(descriptor_dict.values())
-        data_matrix.append(desc_vector)
-
-    data_matrix = np.array(data_matrix)
-
-    return data_matrix
-
-
 def load_and_prepare(filepath, sep=',') -> OdorData:
     """
     Loads a csv and builds the fully processed OdorData object (rdkit
@@ -84,8 +53,7 @@ def load_and_prepare(filepath, sep=',') -> OdorData:
         OdorData with df and row-aligned reduced data matrix x
     """
     df = load_csv(filepath, sep=sep)
-    x = make_rdkit_descriptors(filepath, sep=sep)
-    x = remove_nans(x)
+    x = make_rdkit_descriptors(df)
     x = reduce_data(x)
     return OdorData(df=df, x=x)
 
@@ -148,3 +116,47 @@ def add_cid_to_data(filepath, sep=',', save=False):
         df.to_csv(filepath, index=False)
 
     return df
+
+
+def create_indices(fp, reference_fp, fp_sep=',', reference_fp_sep=','):
+    """
+    Returns integer indices into a reference dataframe for each row in a subset
+    dataframe, matched on the 'smiles' column.
+
+    Useful for passing an externally-sourced sample CSV into plotting functions
+    (plot_sampling_projections, plot_all_sampling_methods_coverage,
+    plot_all_sampling_methods_fun_groups, plot_all_sampling_methods_data_dist,
+    plot_ks_dist) that expect indices into the full reference OdorData.
+
+    Args:
+        fp (str): path to the subset (sampling) CSV
+        reference_fp (str): path to the reference (full) CSV
+        fp_sep (str): delimiter for the subset CSV (default comma)
+        reference_fp_sep (str): delimiter for the reference CSV (default comma)
+
+    Returns:
+        np.ndarray: integer indices into the reference dataframe, one per matched row
+
+    Raises:
+        ValueError: if a SMILES string in the subset is not found in the reference
+
+    Examples:
+        indices = create_indices('my_sample.csv', 'reference.csv')
+        plot_sampling_projections(reference_data, (indices, "My Sample"))
+
+        plot_all_sampling_methods_coverage(
+            reference_data, results,
+            extra_methods=[(indices, "My Sample")]
+        )
+    """
+    df = load_csv(fp, fp_sep)
+    ref_df = load_csv(reference_fp, reference_fp_sep)
+
+    smiles_to_idx = {s: i for i, s in enumerate(ref_df['smiles'])}
+    indices = []
+    for s in df['smiles']:
+        if s not in smiles_to_idx:
+            raise ValueError(f"SMILES '{s}' from subset not found in reference dataframe")
+        indices.append(smiles_to_idx[s])
+
+    return np.array(indices)

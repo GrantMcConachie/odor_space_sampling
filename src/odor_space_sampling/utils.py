@@ -3,6 +3,7 @@ utility functions for processing the data
 """
 
 import numpy as np
+from tqdm import tqdm
 from scipy.stats import ks_2samp
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
@@ -68,7 +69,8 @@ def reduce_data(x):
     """
     print(f'initial data shape: {x.shape}')
 
-    # taking out zero variance columns
+    # taking out zero variance columns and nans
+    x = remove_nans(x)
     x = remove_zero_var_descriptors(x)
     print("dimension after removing constant features:", x.shape)
 
@@ -112,6 +114,31 @@ def get_rd_labels_full(smiles_list):
         rd_desc.append(rd_result)
 
     return rd_desc, list_rd_desc
+
+
+def make_rdkit_descriptors(df):
+    """
+    Converts loaded dataframe into rdkit descriptors
+
+    Args:
+        df (str): dataframe of csv
+    
+    Returns:
+        data_matrix (np.ndarray): (num smiles, descriptor) matrix
+    """
+    smiles_list = list(df['smiles'])
+
+    # embed odors into rdkit descriptor vectors
+    data_matrix = []
+    for smi in tqdm(smiles_list, desc="generating descriptors"):
+        mol = Chem.MolFromSmiles(smi)
+        descriptor_dict = Descriptors.CalcMolDescriptors(mol)
+        desc_vector = list(descriptor_dict.values())
+        data_matrix.append(desc_vector)
+
+    data_matrix = np.array(data_matrix)
+
+    return data_matrix
 
 
 def get_rd_fun_group_labels(smiles_list):
@@ -169,3 +196,40 @@ def get_ks_stats(df1, df2):
     ks_median = np.nanmedian(ks_values)
 
     return ks_values, ks_mean, ks_median
+
+
+def get_num_fn_groups(df, sample_methods, save_path=None):
+    """
+    Gets the number of all functional groups in a dataframe.
+
+    Args:
+        df (pd.DataFrame): dataframe with 'smiles' column
+        sample_methods (list[tuple]): list of (indices, label) pairs
+        save_path (str, optional): if provided, saves missing functional groups
+            per method to a txt file at this path
+
+    Returns:
+        labels (list): 
+    """
+    labels, num_fr = [], []
+    missing_groups = {}
+    desc_names = None
+
+    for indices, lbl in sample_methods:
+        chosen_smiles = list(df.iloc[indices]['smiles'])
+        rd_desc, names = get_rd_fun_group_labels(chosen_smiles)
+        if desc_names is None:
+            desc_names = names
+        present = np.array(rd_desc).sum(axis=0) > 0
+        num_fr.append(int(present.sum()))
+        labels.append(lbl)
+        missing_groups[lbl] = [g for g, p in zip(names, present) if not p]
+
+    if save_path is not None:
+        with open(save_path, 'w') as f:
+            for lbl, missing in missing_groups.items():
+                f.write(f'Missing functional groups in {lbl}:\n')
+                f.write('\n'.join(missing))
+                f.write('\n\n')
+    
+    return labels, num_fr, missing_groups, desc_names

@@ -1,0 +1,52 @@
+smiles	label	cid	IUPAC
+COC(=O)CC(C)=O	['gslf']	7757	methyl 3-oxobutanoate
+CC1CC(C)(C)CC(=O)C1=O	['gslf']	93772	3,5,5-trimethylcyclohexane-1,2-dione
+OCc1ccc2c(c1)OCO2	['gslf']	10322	1,3-benzodioxol-5-ylmethanol
+C1CCSC1	['gslf']	1127	tetrahydrothiophene
+CSCCCOC(C)=O	['gslf']	85519	3-methylsulfanylpropyl acetate
+CC(C)=CCCC(C)=CCOC(=O)C(C)C	['gslf']	16864	3,7-dimethylocta-2,6-dienyl 2-methylpropanoate
+C=CC(C)(CCC=C(C)CC)OC(C)=O	['gslf']	43851	(1,5-dimethyl-1-vinyl-hept-4-enyl) acetate
+CCC(=O)C(C)O	['gslf']	521790	2-hydroxypentan-3-one
+CCCC(C)C(=O)O	['gslf']	7341	2-methylpentanoic acid
+CCCCOC(=O)c1ccc(O)cc1	['gslf']	7184	butyl 4-hydroxybenzoate
+CCc1cnccn1	['gslf']	26331	2-ethylpyrazine
+CCCCCCCC(=O)Oc1ccc(C)cc1	['gslf']	43046	p-tolyl octanoate
+CCCCCCCCS	['gslf']	8144	octane-1-thiol
+CC(C)S	['gslf']	6364	propane-2-thiol
+CCc1ccc(O)cc1	['gslf']		4-ethylphenol
+CC(=O)c1cccs1	['gslf']	6920	1-(2-thienyl)ethanone
+CCCCCCOC(=O)C(C)C	['gslf']	16872	hexyl 2-methylpropanoate
+CCCCCCCOC(=O)CCCCC	['gslf']	81464	heptyl hexanoate
+COC(=O)c1ccc(O)c(C)c1O	['gslf']	118521	methyl 2,4-dihydroxy-3-methyl-benzoate
+CC(C)C(=O)OCCOc1ccccc1	['gslf']	61005	2-phenoxyethyl 2-methylpropanoate
+CC1C(C)(C)C2=C(C(=O)CCC2)C1(C)C	['gslf']	92292	1,1,2,3,3-pentamethyl-2,5,6,7-tetrahydroinden-4-one
+CCOC(C)CC	['gslf']	17586	2-ethoxybutane
+CCC(=O)C(C)S	['gslf']	529635	2-sulfanylpentan-3-one
+CCCCOC(=O)C(C)O	['gslf']	8738	butyl 2-hydroxypropanoate
+COC(=O)C1CCCCC1	['gslf']	20748	methyl cyclohexanecarboxylate
+CCCCCCCCCCOC(C)=O	['gslf']	8167	decyl acetate
+CCCC(N)=O	['gslf']	10927	butanamide
+CC1=CC(=O)CC1C	['gslf']	121710	3,4-dimethylcyclopent-2-en-1-one
+CCC(C)CCC(C)(O)CC	['gslf']	9027	3,6-dimethyloctan-3-ol
+OCCC1CCCCC1	['gslf']	20508	2-cyclohexylethanol
+CCCC(O)C(C)C	['gslf']	12040	2-methylhexan-3-ol
+CC1CCCCC1O	['gslf']	11418	2-methylcyclohexanol
+CC(C)=O	['human', 'gslf']	180	acetone
+CCc1nc(C)cnc1C	['human', 'gslf']	25916	3-ethyl-2,5-dimethyl-pyrazine
+C=CC(=O)OCC	['human', 'gslf']	8821	ethyl prop-2-enoate
+CC(=O)c1ccc(C)o1	['human', 'gslf']	14514	1-(5-methyl-2-furyl)ethanone
+CS(C)(=O)=O	['human', 'gslf']	6213	methylsulfonylmethane
+CCCCCCCC(C)=O	['human', 'gslf']	13187	nonan-2-one
+C=CCCCCCC	['human', 'gslf']	8125	oct-1-ene
+CC1(C)CCCC1	['human']	15421	1,1-dimethylcyclopentane
+C/C=C\C(C)C	['human']	5326159	cis-4-Methyl-2-pentene
+CC/C=C/C(=O)O	['human']	638122	trans-2-Pentenoic acid
+CSc1ncc(C)c(=O)[nH]1	['human']	240575	5-methyl-2-methylsulfanyl-1H-pyrimidin-6-one
+C=C(C)C(=C)C	['human']	10566	2,3-dimethylbuta-1,3-diene
+CCc1ccc(C)cc1	['human']	12160	1-ethyl-4-methyl-benzene
+C=Cc1ccc(C)cc1	['human']	12161	1-methyl-4-vinyl-benzene
+COCC(C)OCC(C)O	['human']	25484	1-(2-methoxy-1-methyl-ethoxy)propan-2-ol
+CCCCCCCCCCCO	['human', 'gslf']	8184	undecan-1-ol
+CCC(S)CCO	['human']	480012	3-sulfanylpentan-1-ol
+Cc1cnccn1	['human', 'gslf']	7976	2-methylpyrazine
+CCCCCCCCCCCCCCCCl	['human']	20996	1-chloropentadecane

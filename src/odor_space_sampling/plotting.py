@@ -9,8 +9,8 @@ import matplotlib.pyplot as plt
 from sklearn.decomposition import PCA
 from sklearn.metrics import pairwise_distances
 
-from .data import OdorData
-from .utils import get_rd_fun_group_labels, get_ks_stats
+from .data import OdorData, make_rdkit_descriptors
+from .utils import get_rd_fun_group_labels, remove_nans, remove_zero_var_descriptors, zscore_features, get_ks_stats, get_num_fn_groups
 
 
 def _get_x(data):
@@ -31,7 +31,11 @@ def plot_scree_plot(data):
     Returns:
         scree plot of data
     """
-    x = _get_x(data)
+    df = _get_df(data)
+    x = make_rdkit_descriptors(df)
+    x = remove_nans(x)
+    x = remove_zero_var_descriptors(x)
+    x = zscore_features(x)
     pca = PCA()
     pca.fit(x)
     plt.scatter(
@@ -54,7 +58,11 @@ def plot_feature_covariance(data):
     Returns:
         plot of covariances
     """
-    x = _get_x(data)
+    df = _get_df(data)
+    x = make_rdkit_descriptors(df)
+    x = remove_nans(x)
+    x = remove_zero_var_descriptors(x)
+    x = zscore_features(x)
     cov = np.corrcoef(x.T)
     up_tri_ind = np.triu_indices(x.shape[1])
     plt.hist(cov[up_tri_ind])
@@ -345,28 +353,12 @@ def plot_fn_groups(data, sample_methods, save_path=None):
             per method to a txt file at this path
     """
     df = _get_df(data)
-    labels, num_fr = [], []
-    missing_groups = {}
-    desc_names = None
-
-    for indices, lbl in sample_methods:
-        chosen_smiles = list(df.iloc[indices]['smiles'])
-        rd_desc, names = get_rd_fun_group_labels(chosen_smiles)
-        if desc_names is None:
-            desc_names = names
-        present = np.array(rd_desc).sum(axis=0) > 0
-        num_fr.append(int(present.sum()))
-        labels.append(lbl)
-        missing_groups[lbl] = [g for g, p in zip(names, present) if not p]
-
-    if save_path is not None:
-        with open(save_path, 'w') as f:
-            for lbl, missing in missing_groups.items():
-                f.write(f'Missing functional groups in {lbl}:\n')
-                f.write('\n'.join(missing))
-                f.write('\n\n')
-
-    fig, ax = plt.subplots(figsize=(12, 6))
+    labels, num_fr, _, desc_names = get_num_fn_groups(
+        df,
+        sample_methods,
+        save_path=save_path
+    )
+    _, ax = plt.subplots(figsize=(12, 6))
     bars = ax.bar(labels, num_fr)
     ax.bar_label(bars)
     ax.set_ylabel('count')
