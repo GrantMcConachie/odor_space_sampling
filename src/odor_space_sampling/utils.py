@@ -3,6 +3,7 @@ utility functions for processing the data
 """
 
 import numpy as np
+from scipy.stats import ks_2samp
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
@@ -111,3 +112,60 @@ def get_rd_labels_full(smiles_list):
         rd_desc.append(rd_result)
 
     return rd_desc, list_rd_desc
+
+
+def get_rd_fun_group_labels(smiles_list):
+    """
+    Gets the rdkit descriptors for labeling molecules by their functional
+    groups
+
+    Args:
+        smiles_list (list) - List of all the smiles
+
+    Returns:
+        rd_desc (list) - List of all the rd descriptors
+    """
+    rd_desc = []
+    list_rd_desc = [x[0] for x in Descriptors._descList if "fr" in x[0]]
+    calc_rd = MoleculeDescriptors.MolecularDescriptorCalculator(
+        [x[0] for x in Descriptors._descList if "fr" in x[0]]
+    )
+    for smiles in smiles_list:
+        mol = Chem.MolFromSmiles(smiles)
+        rd_result = np.array(calc_rd.CalcDescriptors(mol))
+        rd_desc.append(rd_result)
+
+    return rd_desc, list_rd_desc
+
+
+def get_ks_stats(df1, df2):
+    """
+    Gets the median and mean of all the KS statistics each rdkit feature of 
+    two lists of smiles.
+
+    Args:
+        df1, df2 (pandas.DataFrame): dataframes with a column of smiles
+    
+    Returns:
+        ks_values (list): The ks-statistics for all the rdkit features
+        ks_mean (float): mean value of all ks statistics
+        ks_median (float): median value of all the ks statistics
+    """
+    # extract smiles and rd descriptors
+    df1_smiles = list(df1['smiles'])
+    df2_smiles = list(df2['smiles'])
+    df1_rd_desc, _ = get_rd_labels_full(df1_smiles)
+    df2_rd_desc, _ = get_rd_labels_full(df2_smiles)
+    df1_rd_desc = np.array(df1_rd_desc)
+    df2_rd_desc = np.array(df2_rd_desc)
+
+    # calculate all the ks statistics
+    ks_values = []
+    for i in range(df2_rd_desc.shape[1]):
+        ks_values.append(ks_2samp(df1_rd_desc[:, i], df2_rd_desc[:, i]))
+    
+    # get mean and median
+    ks_mean = np.nanmean(ks_values)
+    ks_median = np.nanmedian(ks_values)
+
+    return ks_values, ks_mean, ks_median

@@ -244,9 +244,12 @@ def gmm_resample_varying_seeds(
         n_samples (int): number of points to sample from the GMM
         n_clusters (int): number of gaussian components in the GMM
         save_path (str): if provided, saves the output df to this path
+    
+    Returns:
+        dfs (list): lsit of dataframes of the sampled points
     """
     dfs = []
-    if '.csv' in save_path:
+    if save_path is not None and '.csv' in save_path:
         save_path = save_path.replace('.csv', '')
 
     for seed in tqdm(seeds, desc="iterating through seeds"):
@@ -262,3 +265,5 @@ def gmm_resample_varying_seeds(
 
         if save_path is not None:
             df_to_save.to_csv(f'{save_path}_{seed}.csv', index=False)
+    
+    return dfs
